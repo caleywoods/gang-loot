@@ -7,7 +7,60 @@
 <html>
 <head>
 	<title>Gang Loot</title>
+    <link rel="stylesheet" href="option_styles.css">
+    <link
+      href="https://unpkg.com/sanitize.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/sanitize.css/typography.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/sanitize.css/forms.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <script src="options.js"></script>
 </head>
 <body>
+    <div id="body-container">
+        <div id="status">
+        </div>
+        <div id="hero-text">
+            <h1>Gang Loot Options</h1>
+        </div>
+        <div id="spreadsheet-option-container" class="mb5">
+            <label for="spreadsheet-url">Link to Google Sheet:</label>
+            <input type="url" id="spreadsheet-url" name="spreadsheet-url">
+        </div>
+        <div id="font-size-select-container" class="mb5">
+            <label for="font-size-select">Choose font size:</label>
+            <select name="font-size-select" id="font-size-select">
+                <option value="text-4">Larger</option>
+                <option value="text-5">Smaller</option>
+            </select>
+        </div>
+        <div id="font-color-select-container" class="mb5">
+            <label for="font-color-select">Choose font color:</label>
+            <select name="font-color-select" id="font-color-select">
+                <option value="text-gold">Gold</option>
+                <option value="text-horde">Horde</option>
+                <option value="text-alliance">Alliance</option>
+                <option value="text-legendary">Legendary</option>
+            </select>
+            <div id="font-color-examples-container">
+                <div class="box text-horde"></div><span class="mr3">Horde</span>
+                <div class="box text-alliance"></div><span class="mr3">Alliance</span>
+                <div class="box text-gold"></div><span class="mr3">Gold</span>
+                <div class="box text-legendary"></div>Legendary
+            </div>
+        </div>
+        <div id="save-controls-container">
+            <button id="save">
+                Save
+            </button>
+        </div>
+    </div>
 </body>
 </html>

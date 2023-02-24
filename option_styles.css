@@ -1,0 +1,76 @@
+#body-container {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: large;
+}
+
+#hero-text {
+    margin-bottom: 20px;
+}
+
+#font-color-examples-container {
+    display: flex;
+}
+
+.box {
+  height: 20px;
+  width: 20px;
+  margin-bottom: 15px;
+  margin-right: 2px;
+  border: 1px solid black;
+}
+
+#spreadsheet-url {
+    width: 75%;
+}
+
+.mr1 {
+    margin-right: 2px;
+}
+
+.mr2 {
+    margin-right: 4px;
+}
+
+.mr3 {
+    margin-right: 6px;
+}
+
+.mr4 {
+    margin-right: 8px;
+}
+
+.mr5 {
+    margin-right: 10px;
+}
+
+.mb5 {
+    margin-bottom: 10px;
+}
+
+.text-4 {
+    font-size: 24px
+}
+
+.text-5 {
+    font-size: 18px
+}
+
+.text-horde {
+    background-color: #dc3545
+}
+
+.text-alliance {
+    background-color: #007bff
+}
+
+.text-gold {
+    background-color: #ffb400
+}
+
+.text-legendary {
+    background-color: #ff8000
+}

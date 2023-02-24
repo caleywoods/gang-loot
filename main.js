@@ -1,4 +1,12 @@
+window.addEventListener('settings-update', evt => {
+    window.settings = evt.detail;
+}, false);
+
 function init() {
+    // Get initial plugin settings
+    const evt = new CustomEvent('settings-request', { detail: {update: true} });
+    window.dispatchEvent(evt);
+
     const controlsContainer = document.createElement('div');
     const updateSKListPositionsButton = document.createElement('button');
     const searchBoxElement = document.getElementById('itemTable_filter');
@@ -23,7 +31,9 @@ function init() {
 
     // TODO: Show a timestamp of the last time an update was made
     updateSKListPositionsButton.addEventListener('click', (e) => {
-        fetch('https://docs.google.com/spreadsheets/d/1vEwONrBe7DA3fwC9kMq8By0pb4i2_iz1VtRH71-SViY/export?format=csv')
+        const evt = new CustomEvent('settings-request', { detail: { update: true } });
+        window.dispatchEvent(evt);
+        fetch(window.settings.url)
             .then(response => {
                 return response.text();
             })
@@ -50,7 +60,12 @@ function init() {
                     // The first span element under the anchor is the loot priority number, adjust it to be our SK list pos
                     const lootPrioElement = entry.querySelector('a span');
                     lootPrioElement.innerHTML = lootPrioNumber;
-                    lootPrioElement.classList.add('text-4', 'text-gold');
+                    lootPrioElement.classList = [];
+                    if (window.settings) {
+                        lootPrioElement.classList.add(window.settings.textsize, window.settings.textcolor);
+                    } else {
+                        lootPrioElement.classList.add('text-4', 'text-gold');
+                    }
                 });
             });
     });

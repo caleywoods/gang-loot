@@ -1,10 +1,10 @@
 {
 	"name": "Gang Loot - Improve Thatsmybis.com search and integrate SK position",
 	"description": "Improve Thatsmybis.com search and integrate SK position",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"manifest_version": 3,
 	"author": "Caley Woods",
-	"permissions": ["activeTab"],
+	"permissions": ["tabs", "storage"],
     "content_scripts": [{
         "world": "MAIN",
         "js": ["inject.js"],
@@ -14,5 +14,9 @@
     "web_accessible_resources": [{
         "resources": ["main.js"],
         "matches": ["https://thatsmybis.com/*"]
-    }]
+    }],
+    "options_page": "popup.html",
+    "externally_connectable": {
+        "matches": ["https://thatsmybis.com/*"]
+    }
 }
