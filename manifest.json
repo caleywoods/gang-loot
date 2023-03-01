@@ -1,22 +1,19 @@
 {
-	"name": "Gang Loot - Improve Thatsmybis.com search and integrate SK position",
-	"description": "Improve Thatsmybis.com search and integrate SK position",
-	"version": "0.0.2",
+	"name": "Thatsmybis External Loot Priority Integrator",
+	"description": "Use an external priority list to prioritize loot using Thatsmybis.com",
+	"version": "0.0.5",
 	"manifest_version": 3,
 	"author": "Caley Woods",
-	"permissions": ["tabs", "storage"],
+	"permissions": ["storage"],
     "content_scripts": [{
         "world": "MAIN",
         "js": ["inject.js"],
         "run_at": "document_idle",
-        "matches": ["https://thatsmybis.com/*"]
+        "matches": ["https://thatsmybis.com/*/*loot/*"]
     }],
     "web_accessible_resources": [{
         "resources": ["main.js"],
         "matches": ["https://thatsmybis.com/*"]
     }],
-    "options_page": "popup.html",
-    "externally_connectable": {
-        "matches": ["https://thatsmybis.com/*"]
-    }
+    "options_page": "popup.html"
 }
