@@ -16,6 +16,7 @@ function init() {
     updateSKListPositionsButton.id = 'update-sk-list-positions-btn';
 
     updateSKListPositionsButton.classList.add('btn', 'btn-sm', 'btn-light');
+    updateSKListPositionsButton.style.cssText = 'position:fixed;top:50px;right:10px;z-index:999';
 
     // Add margin classes for some visual separation
     controlsContainer.classList.add('mb-2');
