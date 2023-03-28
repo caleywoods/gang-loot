@@ -2,9 +2,39 @@ window.addEventListener('settings-update', evt => {
     window.settings = evt.detail;
 }, false);
 
+function quickSort(array) {
+
+    if (array.length < 2) {
+        return array;
+    }
+
+    const pivotIndex = array.length - 1;
+    const pivot = array[pivotIndex];
+    const left = [];
+    const right = [];
+
+    for (let i = 0; i < pivotIndex; i++) {
+        const pivotVal = pivot.querySelector('span a span:first-child').innerText.split(' ')[0];
+        const currentItem = array[i];
+        const currentItemVal = currentItem.querySelector('span a span:first-child').innerText.split(' ')[0];
+        +currentItemVal < +pivotVal
+            ? left.push(currentItem)
+            : right.push(currentItem)
+    }
+
+    const result = [
+        ...quickSort(left),
+        pivot,
+        ...quickSort(right)
+    ]
+
+    return result
+
+}
+
 function init() {
     // Get initial plugin settings
-    const evt = new CustomEvent('settings-request', { detail: {update: true} });
+    const evt = new CustomEvent('settings-request', { detail: { update: true } });
     window.dispatchEvent(evt);
 
     const controlsContainer = document.createElement('div');
@@ -40,8 +70,9 @@ function init() {
             })
             .then(raiders => {
                 raiders = raiders.split('\r\n').map(raider => {
-                    if (raider === '') return;
-                    const raiderName = raider.replace(/\s*/g, '').replace(/\+\d*/,'').toLowerCase();
+                    const emptyRow = raider === '' || raider === ',,';
+                    if (emptyRow) return;
+                    const raiderName = raider.replace(/\s*/g, '').replace(/\+\d*/, '').split(',')[0].toLowerCase();
                     return raiderName;
                 });
                 const allItemTableRaiderEntries = document.querySelectorAll('.js-item-wishlist-character');
@@ -50,7 +81,7 @@ function init() {
                 allItemTableRaiderEntries.forEach(entry => {
                     let innerTextArr = entry.innerText.split(/\W+/);
                     let lootPrioNumber = innerTextArr[0];
-                    let raiderName = entry.innerText.replace(/^\d*/g,'').replace(/\d+(h|d)/,'').replace(/\s*/g,'');
+                    let raiderName = entry.innerText.replace(/^\d*/g, '').replace(/\d+(h|d)/, '').replace(/\s*/g, '');
                     raiderName = raiderName.toLowerCase();
                     lootPrioNumber = raiders.indexOf(raiderName) + 1;
 
@@ -67,6 +98,24 @@ function init() {
                     } else {
                         lootPrioElement.classList.add('text-4', 'text-gold');
                     }
+                });
+
+                // All rows where more than one raider has the item on their list
+                const lootEntries = document.querySelectorAll('table tr:not(:first-child):has(td:nth-child(4) ul li:not(:only-child)');
+
+                lootEntries.forEach(entry => {
+                    const wishlistULElement = entry.querySelector('td:nth-child(4) ul');
+                    const wishlistArray = wishlistULElement.querySelectorAll('li');
+                    const skPositionSortedList = quickSort(wishlistArray);
+
+                    // Clear the UL so we can insert our new list
+                    while (wishlistULElement.firstChild) {
+                        wishlistULElement.removeChild(wishlistULElement.firstChild);
+                    }
+
+                    skPositionSortedList.forEach(raiderElement => {
+                        wishlistULElement.appendChild(raiderElement);
+                    });
                 });
             });
     });

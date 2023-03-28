@@ -1,6 +1,5 @@
 const s = document.createElement('script');
-// s.setAttribute('src', 'chrome-extension://kmkbjpncedbemikbhmclhlbahaihknpf/main.js');
-s.setAttribute('src', 'chrome-extension://ggbjpkibpljjlhekdoljnlhmedpfpfpm/main.js');
+s.setAttribute('src', 'chrome-extension://kmkbjpncedbemikbhmclhlbahaihknpf/main.js');
 s.async = false;
 document.documentElement.appendChild(s);
 
