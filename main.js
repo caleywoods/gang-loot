@@ -81,7 +81,8 @@ function init() {
                 allItemTableRaiderEntries.forEach(entry => {
                     let innerTextArr = entry.innerText.split(/\W+/);
                     let lootPrioNumber = innerTextArr[0];
-                    let raiderName = entry.innerText.replace(/^\d*/g, '').replace(/\d+(h|d)/, '').replace(/\s*/g, '');
+                    // If the raider adds a note about a particular piece of loot, the word "note" appears next to their name and causes issues so we remove the word "note" from the end of the string
+                    let raiderName = entry.innerText.replace(/^\d*/g, '').replace(/\d+(h|d)/, '').replace(/\s*/g, '').replace(/note$/g,'');
                     raiderName = raiderName.toLowerCase();
                     lootPrioNumber = raiders.indexOf(raiderName) + 1;
 
