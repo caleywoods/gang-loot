@@ -1,7 +1,7 @@
 {
   "name": "Thatsmybis External Loot Priority Integrator",
   "description": "Use an external priority list to prioritize loot using Thatsmybis.com",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "manifest_version": 3,
   "author": "Caley Woods",
   "permissions": ["storage"],
